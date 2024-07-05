@@ -16,16 +16,12 @@
               <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Dashboard</h1>
             </div>
 
-            <div class="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
-            
-            </div>
-
           </div>
 
           <!-- Cards -->
-          <div class="grid grid-cols-12 gap-6">
-
+          <UserCards/>
+          <div class="grid grid-cols-12 gap-2">
+            
           </div>
 
         </div>
@@ -41,14 +37,14 @@
 import { ref } from 'vue'
 import Sidebar from '../layouts/Sidebar.vue'
 import Header from '../layouts/Header.vue'
-
+import  UserCards from '../layouts/dashboard/UserCards.vue'
 
 export default {
   name: 'Dashboard',
   components: {
     Sidebar,
     Header,
-
+    UserCards,
   },
   setup() {
 
