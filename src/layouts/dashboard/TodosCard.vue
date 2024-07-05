@@ -25,7 +25,9 @@
                   <div class="text-left">{{todo.title}}</div>
                 </td>
                 <td class="p-2 whitespace-nowrap">
-                  <div class="text-left">{{ todo.completed }}</div>
+                    <div :class="{'bg-red-200': !todo.completed, 'bg-green-200': todo.completed}" class="p-1 rounded-lg">
+                        <div class="text-center">{{ todo.completed ? 'Vrai' : 'Faux' }}</div>
+                    </div>
                 </td>
               </tr>
             </tbody>
