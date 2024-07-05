@@ -8,8 +8,8 @@ const  apiClient =  axios.create({
 })
 
 export default  {
-    getUsers() {
-        return apiClient.get('/users');
+    getUsersMe() {
+        return apiClient.get('/users/1');
     },
     getPhoto() {
         return apiClient.get('/photos');

@@ -9,7 +9,9 @@
     >
       <img class="w-8 h-8 rounded-full" :src="UserAvatar" width="32" height="32" alt="User" />
       <div class="flex items-center truncate">
-        <span class="truncate ml-2 text-sm font-medium text-gray-600 dark:text-gray-100 group-hover:text-gray-800 dark:group-hover:text-white">Profile</span>
+        <span v-if="users" class="truncate ml-2 text-sm font-medium text-gray-600 dark:text-gray-100 group-hover:text-gray-800 dark:group-hover:text-white">
+          {{ users.username }}
+        </span>
         <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 dark:text-gray-500" viewBox="0 0 12 12">
           <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
         </svg>
@@ -25,8 +27,8 @@
     >
       <div v-show="dropdownOpen" class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700/60 py-1.5 rounded-lg shadow-lg overflow-hidden mt-1" :class="align === 'right' ? 'right-0' : 'left-0'">
         <div class="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200 dark:border-gray-700/60">
-          <div class="font-medium text-gray-800 dark:text-gray-100">user</div>
-          <div class="text-xs text-gray-500 dark:text-gray-400 italic">user</div>
+          <div v-if="users" class="font-medium text-gray-800 dark:text-gray-100"> {{ users.username }}</div>
+          <div v-if="users" class="text-xs text-gray-500 dark:text-gray-400 italic"> {{ users.email }}</div>
         </div>
         <ul
           ref="dropdown"
@@ -47,6 +49,7 @@
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue'
+import apiClient from '../api';
 import UserAvatar from '../assets/images/user-avatar-32.jpg'
 
 export default {
@@ -55,8 +58,23 @@ export default {
   data() {
     return {
       UserAvatar: UserAvatar,
+      users: []
     }
-  },  
+  },
+  created() {
+    this.fetchUsers();
+  }, 
+  methods: {
+    async fetchUsers() {
+      try {
+        const response = await apiClient.getUsersMe();
+        this.users = response.data;
+        console.log(response.data.username)
+      } catch (error) {
+        console.error('Erreur lors de la recup des users:', error);
+      }
+    }
+  },
   setup() {
 
     const dropdownOpen = ref(false)
