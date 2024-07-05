@@ -19,9 +19,14 @@
           </div>
 
           <!-- Cards -->
-          <UserCards/>
+          <div class="mb-8" >
+            <UserCards/>
+          </div>
           <div class="grid grid-cols-12 gap-2">
-            
+            <CommentsCards/>
+
+            <TodosCards/>
+
           </div>
 
         </div>
@@ -38,13 +43,16 @@ import { ref } from 'vue'
 import Sidebar from '../layouts/Sidebar.vue'
 import Header from '../layouts/Header.vue'
 import  UserCards from '../layouts/dashboard/UserCards.vue'
-
+import CommentsCards from '../layouts/dashboard/CommentsCards.vue'
+import TodosCards from '../layouts/dashboard/TodosCard.vue'
 export default {
   name: 'Dashboard',
   components: {
     Sidebar,
     Header,
     UserCards,
+    CommentsCards,
+    TodosCards,
   },
   setup() {
 

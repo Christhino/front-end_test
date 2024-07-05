@@ -16,5 +16,11 @@ export default  {
     },
     getPhoto() {
         return apiClient.get('/photos');
+    },
+    getComments() {
+        return apiClient.get('/comments')
+    },
+    getTodos() {
+        return apiClient.get('/todos')
     }
 }
